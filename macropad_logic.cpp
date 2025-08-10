@@ -51,8 +51,8 @@ void macropad_setup() {
   update_display();
 }
 
-// Function to check the state of the buttons
-void check_buttons() {
+// Check button states and update script toggles
+void update_button_states() {
   // Debounce
   static unsigned long last_button_press = 0;
   unsigned long current_time = millis();
