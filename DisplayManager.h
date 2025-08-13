@@ -1,4 +1,4 @@
-// display_manager.h
+// DisplayManager.h
 
 #ifndef DISPLAY_MANAGER_H
 #define DISPLAY_MANAGER_H
@@ -7,6 +7,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+struct Script;
 
 // --- OLED DEFINITION ---
 #define SCREEN_WIDTH 128    // OLED display width, in pixels
@@ -14,8 +15,8 @@
 #define SCREEN_ADDRESS 0x3C // I2C address of the display
 
 // --- FUNCTION PROTOTYPE ---
-// Functions to manage the display's state and content
-void display_setup();
-void display_update_status(bool killswitch, bool script1, bool script2, bool script3);
+void displaySetup();
+void displayUpdateMenu(Script scripts[], const int numScripts);
+void displayUpdateStatus(bool killswitch, Script scripts[], const int numScripts);
 
 #endif
