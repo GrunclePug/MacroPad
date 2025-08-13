@@ -1,7 +1,13 @@
 // MacroPad.ino
 
 // --- INCLUDE ---
-#include "macropad_logic.h"
+#include "MacroPadLogic.h"
+
+// Scripts
+#include "scripts/Gamepad.cpp"
+#include "scripts/Autoclicker.cpp"
+#include "scripts/Jitter.cpp"
+#include "scripts/MouseHold.cpp"
 
 void setup() {
   // Initialize the Serial monitor for debugging purposes
@@ -9,15 +15,15 @@ void setup() {
   Serial.println("MacroPad Starting...");
 
   // Call the setup function from our custom logic file
-  macropad_setup();
+  macropadSetup();
   Serial.println("MacroPad Online.");
 }
 
 void loop() {
-  update_button_states();
-
-  // Macro
-  autoclicker();
-  jitter();
-  mouse_hold();
+  updateButtonStates();
+  for (int i = 0; i < NUM_SCRIPTS; i++) {
+    if (scripts[i].enabled) {
+      scripts[i].run(&scripts[i]);
+    }
+  }
 }
